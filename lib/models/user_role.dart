@@ -1,0 +1,4 @@
+enum UserRole {
+  renter,
+  rentee
+}
