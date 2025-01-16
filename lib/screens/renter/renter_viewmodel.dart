@@ -7,6 +7,7 @@ import 'package:movease/models/vehicle.dart';
 import 'package:movease/screens/add_vehicle/add_vehicle_view.dart';
 import 'package:movease/screens/booking_request/booking_request_view.dart';
 import 'package:movease/screens/booking_status_renter/booking_status_renter_viewmodel.dart';
+import 'package:movease/screens/renter_feedback/renter_feedback_view.dart';
 import 'package:movease/services/auth/auth_service.dart';
 import 'package:movease/services/vehicle/vehicle_service.dart';
 
@@ -131,6 +132,12 @@ class RenterViewModel extends Viewmodel {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => BookingStatusRenterView()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => RenterFeedbackView()),
         );
         break;
     }

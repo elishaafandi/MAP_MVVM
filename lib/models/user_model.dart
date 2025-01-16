@@ -7,7 +7,9 @@ class UserModel {
   final String matricNo;
   final String course;
   final String address;
+  final String? profilePhoto;  // Added for profile photo
   final DateTime createdAt;
+  final int userId;  // Added userId field
 
   UserModel({
     required this.username,
@@ -16,17 +18,20 @@ class UserModel {
     required this.matricNo,
     required this.course,
     required this.address,
+    this.profilePhoto,  // Made optional
     required this.createdAt,
+    required this.userId,
   });
 
   Map<String, dynamic> toJSON() {
     return {
+      'userId': userId,
       'username': username,
       'email': email,
-      //'password': password,
       'matricNo': matricNo,
       'course': course,
       'address': address,
+      'profilePhoto': profilePhoto,
       'createdAt': Timestamp.fromDate(createdAt),
     };
   }
@@ -44,17 +49,18 @@ class UserModel {
     }
 
     return UserModel(
+      userId: json['userId'] ?? 0,
       username: json['username'] ?? '',
       email: json['email'] ?? '',
-      password: json['password'] ?? '',
+      password: json['password'],
       matricNo: json['matricNo'] ?? '',
       course: json['course'] ?? '',
       address: json['address'] ?? '',
+      profilePhoto: json['profilePhoto'],
       createdAt: parseDate(json['createdAt']),
     );
   }
 
   Map<String, dynamic> toMap() => toJSON();
-  factory UserModel.fromMap(Map<String, dynamic> map) =>
-      UserModel.fromJSON(map);
+  factory UserModel.fromMap(Map<String, dynamic> map) => UserModel.fromJSON(map);
 }

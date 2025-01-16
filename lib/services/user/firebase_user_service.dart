@@ -46,6 +46,28 @@ class FirebaseUserService extends UserService {
   }
 
   @override
+  Future<void> updateUserProfilePhoto(String email, String photoBase64) async {
+    try {
+      final querySnapshot = await _firestore
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        await _firestore
+            .collection('users')
+            .doc(querySnapshot.docs.first.id)
+            .update({'profilePhoto': photoBase64});
+      } else {
+        throw Exception('User not found for profile photo update');
+      }
+    } catch (e) {
+      print('Error updating profile photo: $e');
+      throw Exception('Failed to update profile photo: $e');
+    }
+  }
+
+  @override
   Stream<UserModel?> getUserStream(String email) {
     return _firestore
         .collection('users')

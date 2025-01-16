@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movease/chats_rentee.dart';
 import 'package:movease/configs/service_locator.dart';
@@ -16,8 +17,10 @@ import 'package:movease/screens/edit_vehicle/edit_vehicle_viewmodel.dart';
 import 'package:movease/screens/make_booking/make_booking_view.dart';
 import 'package:movease/screens/pay_deposit/pay_deposit_view.dart';
 import 'package:movease/screens/registration/registration_view.dart';
+import 'package:movease/screens/rentee_feedback/rentee_feedback_view.dart';
 import 'package:movease/screens/rentee_status/rentee_status_view.dart';
 import 'package:movease/screens/rentee_status/rentee_status_viewmodel.dart';
+import 'package:movease/screens/renter_feedback/renter_feedback_view.dart';
 import 'package:movease/screens/renter_status/renter_status_view.dart';
 import 'package:movease/screens/renter_status/renter_status_viewmodel.dart';
 import 'package:movease/screens/reset_password/reset_password_view.dart';
@@ -51,6 +54,8 @@ class Routes {
   static const String chatRentee = '/chat-rentee';
   static const String notifications = '/notifications';
   static const String chatRoom = '/chat-room';
+  static const String renteeFeedback = '/rentee-feedback';
+  static const String renterFeedback = '/renter-feedback';
 
   static Route<dynamic>? createRoute(settings) {
     switch (settings.name) {
@@ -213,6 +218,16 @@ class Routes {
             ),
           );
         }
+
+      case renteeFeedback:
+        return MaterialPageRoute(
+          builder: (_) => RenteeFeedbackView(),
+        );
+
+      case renterFeedback:
+        return MaterialPageRoute(
+          builder: (_) => RenterFeedbackView(),
+        );
     }
     return null;
   }

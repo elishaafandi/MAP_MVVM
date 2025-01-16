@@ -7,10 +7,14 @@ import 'configs/routes.dart';
 import 'configs/service_locator.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Initialize Firebase
-  await Firebase.initializeApp();
+ WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: FirebaseOptions(
+    apiKey: "AIzaSyB0QOjaq3lpNoernFagA29KZNnxYTvdepc",
+    appId: "1:625980372531:android:2cf247bfd4f07773311546",
+    messagingSenderId: "625980372531",
+    projectId: "movease-6a9fb", ),
+  );
 
   // Initialize service locator
   initializeServiceLocator();

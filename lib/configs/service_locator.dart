@@ -21,7 +21,9 @@ import 'package:movease/screens/notification_rentee/notification_rentee_viewmode
 import 'package:movease/screens/pay_deposit/pay_deposit_viewmodel.dart';
 import 'package:movease/screens/pre_inspection/pre_inspection_form_viewmodel.dart';
 import 'package:movease/screens/rentee/rentee_viewmodel.dart';
+import 'package:movease/screens/rentee_feedback/rentee_feedback_viewmodel.dart';
 import 'package:movease/screens/rentee_status/rentee_status_viewmodel.dart';
+import 'package:movease/screens/renter_feedback/renter_feedback_viewmodel.dart';
 import 'package:movease/screens/renter_status/renter_status_viewmodel.dart';
 import 'package:movease/screens/submit_booking/submit_booking_viewmodel.dart';
 
@@ -34,6 +36,8 @@ import 'package:movease/services/chat/chat_service.dart';
 import 'package:movease/services/chat/firebase_chat_service.dart';
 import 'package:movease/services/deposit/deposit_service.dart';
 import 'package:movease/services/deposit/firebase_deposit_service.dart';
+import 'package:movease/services/feedback/feedback_firebase_service.dart';
+import 'package:movease/services/feedback/feedback_service.dart';
 import 'package:movease/services/notification/firebase_notification_service.dart';
 import 'package:movease/services/notification/notification_service.dart';
 
@@ -224,6 +228,24 @@ void initializeServiceLocator() {
       chatId: params['chatId']!,
       currentUserId: params['currentUserId']!,
       otherUserId: params['otherUserId']!,
+    ),
+  );
+
+  locator.registerLazySingleton<FeedbackService>(
+    () => FirebaseFeedbackService(),
+  );
+
+  // Register RenteeFeedbackViewModel
+  locator.registerFactory(
+    () => RenteeFeedbackViewModel(
+      feedbackService: locator<FeedbackService>(),
+    ),
+  );
+
+   // Register RenteeFeedbackViewModel
+  locator.registerFactory(
+    () => RenterFeedbackViewModel(
+      feedbackService: locator<FeedbackService>(),
     ),
   );
 }

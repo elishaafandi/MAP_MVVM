@@ -4,6 +4,7 @@ import 'package:map_mvvm/view/viewmodel.dart';
 import 'package:movease/screens/notification_rentee/notification_rentee_view.dart';
 import 'package:movease/screens/booking_list/booking_list_view.dart';
 import 'package:movease/screens/booking_status_rentee/booking_status_rentee_view.dart';
+import 'package:movease/screens/rentee_feedback/rentee_feedback_view.dart';
 import '../../models/vehicle.dart';
 import '../../services/vehicle/vehicle_service.dart';
 import '../../services/auth/auth_service.dart';
@@ -77,6 +78,14 @@ class RenteeViewModel extends Viewmodel {
           ),
         );
         break;
+      case 3: // Feedback
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RenteeFeedbackView(),
+          ),
+        );
+        break;
       case 4: // Notifications tab
         Navigator.push(
           context,
@@ -85,6 +94,7 @@ class RenteeViewModel extends Viewmodel {
           ),
         );
         break;
+
       // ... handle other cases
     }
   }
